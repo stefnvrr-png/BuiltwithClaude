@@ -52,7 +52,7 @@
   }
 
   body {
-    font-family: 'Playfair Display', serif;
+    font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -81,9 +81,18 @@
     gap: 10px;
   }
 
+  .nav-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--purple-600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--purple-50);
+  }
 
   .nav-name {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--text);
   }
@@ -333,6 +342,37 @@
   .tag-low  { background: var(--teal-50);  color: var(--teal-800);  border-color: var(--teal-100); }
   .tag-done { background: var(--gray-100); color: var(--gray-600);  border-color: var(--gray-200); }
 
+  .priority-select {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 20px 2px 8px;
+    border-radius: 20px;
+    border: 0.5px solid;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 10px;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+  .priority-select:hover { opacity: 0.8; }
+  .priority-select.sel-high {
+    background-color: var(--red-50); color: var(--red-800); border-color: var(--red-200);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23791F1F' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  }
+  .priority-select.sel-med {
+    background-color: var(--amber-50); color: var(--amber-800); border-color: var(--amber-200);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23633806' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  }
+  .priority-select.sel-low {
+    background-color: var(--teal-50); color: var(--teal-800); border-color: var(--teal-100);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23085041' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  }
+
   .add-row {
     display: flex;
     gap: 8px;
@@ -539,9 +579,11 @@
 
 <nav>
   <div class="nav-left">
+    <div class="nav-avatar">SN</div>
     <span class="nav-name">Stefanie Nicole Navarro</span>
   </div>
   <div class="nav-right">
+    <span class="nav-badge">&#x2022; Live Demo</span>
     <span class="nav-date" id="nav-date"></span>
   </div>
 </nav>
@@ -678,56 +720,6 @@
     {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
     {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
   ];
- 
- /* ── RENDER TASKS ── */
-  function renderTasks(){
-
-    const taskList = document.getElementById('task-list');
-
-    taskList.innerHTML = '';
-
-    tasks.forEach(task => {
-
-      if(!task.done){
-
-        taskList.innerHTML += `
-
-          <div class="task-item">
-
-            <input type="checkbox">
-
-            <span class="task-name">
-              ${task.name}
-            </span>
-
-            <select onchange="changePriority(${task.id}, this.value)">
-
-              <option value="high"
-                ${task.priority === 'high' ? 'selected' : ''}>
-                High
-              </option>
-
-              <option value="med"
-                ${task.priority === 'med' ? 'selected' : ''}>
-                Med
-              </option>
-
-              <option value="low"
-                ${task.priority === 'low' ? 'selected' : ''}>
-                Low
-              </option>
-
-            </select>
-
-          </div>
-
-        `;
-
-      }
-
-    });
-
-  }
 
   const members = [
     {initials:'SN', name:'Stefanie N.', role:'Operations Lead',  status:'green', cls:'av-p'},
@@ -763,10 +755,30 @@
   }
 
   function getTag(priority, done) {
-    if (done)            return '<span class="task-tag tag-done">Done</span>';
-    if (priority==='high') return '<span class="task-tag tag-high">High</span>';
-    if (priority==='med')  return '<span class="task-tag tag-med">Med</span>';
-    return                        '<span class="task-tag tag-low">Low</span>';
+    if (done) return '<span class="task-tag tag-done">Done</span>';
+    return `<select
+      class="priority-select sel-${priority}"
+      onclick="event.stopPropagation()"
+      onchange="changePriority(event, ${0})"
+      data-live="1">
+      <option value="high" ${priority==='high'?'selected':''}>High</option>
+      <option value="med"  ${priority==='med' ?'selected':''}>Med</option>
+      <option value="low"  ${priority==='low' ?'selected':''}>Low</option>
+    </select>`;
+  }
+
+  function changePriority(event, _unused) {
+    const sel = event.target;
+    const row = sel.closest('.task-row');
+    const id  = parseInt(row.dataset.id);
+    const val = sel.value;
+    const t   = tasks.find(x => x.id === id);
+    if (!t) return;
+    t.priority = val;
+    sel.className = 'priority-select sel-' + val;
+    showToast('Priority updated to ' + val.charAt(0).toUpperCase() + val.slice(1) + '!');
+    updateStats();
+    renderPrioritySummary();
   }
 
   /* ── RENDER TASKS ── */
@@ -777,7 +789,7 @@
       return true;
     });
     document.getElementById('task-list').innerHTML = filtered.map(t => `
-      <div class="task-row" onclick="toggleTask(${t.id})">
+      <div class="task-row" data-id="${t.id}" onclick="toggleTask(${t.id})">
         <div class="task-cb ${t.done ? 'done' : ''}"></div>
         <span class="task-name ${t.done ? 'done' : ''}">${t.name}</span>
         ${getTag(t.priority, t.done)}
