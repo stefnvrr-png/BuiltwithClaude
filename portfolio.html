@@ -678,6 +678,56 @@
     {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
     {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
   ];
+ 
+ /* ── RENDER TASKS ── */
+  function renderTasks(){
+
+    const taskList = document.getElementById('task-list');
+
+    taskList.innerHTML = '';
+
+    tasks.forEach(task => {
+
+      if(!task.done){
+
+        taskList.innerHTML += `
+
+          <div class="task-item">
+
+            <input type="checkbox">
+
+            <span class="task-name">
+              ${task.name}
+            </span>
+
+            <select onchange="changePriority(${task.id}, this.value)">
+
+              <option value="high"
+                ${task.priority === 'high' ? 'selected' : ''}>
+                High
+              </option>
+
+              <option value="med"
+                ${task.priority === 'med' ? 'selected' : ''}>
+                Med
+              </option>
+
+              <option value="low"
+                ${task.priority === 'low' ? 'selected' : ''}>
+                Low
+              </option>
+
+            </select>
+
+          </div>
+
+        `;
+
+      }
+
+    });
+
+  }
 
   const members = [
     {initials:'SN', name:'Stefanie N.', role:'Operations Lead',  status:'green', cls:'av-p'},
