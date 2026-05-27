@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Operations Dashboard — Stefanie Nicole Navarro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --purple-50: #EEEDFE;
+    --purple-100: #CECBF6;
+    --purple-200: #AFA9EC;
+    --purple-400: #7F77DD;
+    --purple-600: #534AB7;
+    --purple-800: #3C3489;
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --coral-50: #FAECE7;
+    --coral-200: #F0997B;
+    --coral-600: #993C1D;
+    --coral-800: #712B13;
+    --amber-50: #FAEEDA;
+    --amber-200: #EF9F27;
+    --amber-600: #854F0B;
+    --amber-800: #633806;
+    --red-50: #FCEBEB;
+    --red-200: #F09595;
+    --red-600: #A32D2D;
+    --red-800: #791F1F;
+    --gray-50: #F8F8F6;
+    --gray-100: #F1EFE8;
+    --gray-200: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-900: #2C2C2A;
+    --text: #1a1a18;
+    --text-muted: #5F5E5A;
+    --text-hint: #888780;
+    --border: rgba(44,44,42,0.12);
+    --border-md: rgba(44,44,42,0.22);
+    --bg: #F8F8F6;
+    --surface: #ffffff;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: rgba(248,248,246,0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--purple-600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--purple-50);
+  }
+
+  .nav-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--teal-50);
+    color: var(--teal-800);
+    border: 0.5px solid var(--teal-100);
+  }
+
+  .nav-date {
+    font-size: 12px;
+    color: var(--text-hint);
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* HEADER */
+  .db-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .db-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .db-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn-outline {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border-md);
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-outline:hover { border-color: var(--purple-200); color: var(--purple-600); }
+
+  .btn-primary {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--purple-600);
+    color: var(--purple-50);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--purple-800); }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.5s 0.05s ease both;
+  }
+
+  .stat {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    transition: border-color 0.2s;
+  }
+
+  .stat:hover { border-color: var(--purple-200); }
+
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-val.purple { color: var(--purple-600); }
+  .stat-val.teal   { color: var(--teal-400); }
+  .stat-val.amber  { color: var(--amber-600); }
+  .stat-val.red    { color: #E24B4A; }
+
+  .stat-lbl  { font-size: 12px; color: var(--text-muted); }
+  .stat-delta { font-size: 11px; color: var(--teal-600); margin-top: 2px; }
+
+  /* GRID */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    animation: fadeUp 0.5s 0.15s ease both;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+  }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-hint);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* TASK TRACKER */
+  .filter-row {
+    display: flex;
+    gap: 5px;
+  }
+
+  .filter-btn {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-md);
+    background: transparent;
+    color: var(--text-hint);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn.active {
+    background: var(--purple-50);
+    color: var(--purple-800);
+    border-color: var(--purple-200);
+  }
+
+  .task-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .task-row:last-child { border-bottom: none; }
+  .task-row:hover { opacity: 0.8; }
+
+  .task-cb {
+    width: 17px; height: 17px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border-md);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  .task-cb.done { background: var(--teal-400); border-color: var(--teal-400); }
+
+  .task-cb.done::after {
+    content: '';
+    width: 9px; height: 6px;
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid white;
+    transform: rotate(-45deg) translateY(-1px);
+    display: block;
+  }
+
+  .task-name {
+    font-size: 13px;
+    color: var(--text);
+    flex: 1;
+    transition: color 0.15s;
+  }
+
+  .task-name.done {
+    color: var(--text-hint);
+    text-decoration: line-through;
+  }
+
+  .task-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    border: 0.5px solid;
+  }
+
+  .tag-high { background: var(--red-50);   color: var(--red-800);   border-color: var(--red-200); }
+  .tag-med  { background: var(--amber-50); color: var(--amber-800); border-color: var(--amber-200); }
+  .tag-low  { background: var(--teal-50);  color: var(--teal-800);  border-color: var(--teal-100); }
+  .tag-done { background: var(--gray-100); color: var(--gray-600);  border-color: var(--gray-200); }
+
+  .add-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .add-input {
+    flex: 1;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    padding: 8px 12px;
+    border: 0.5px solid var(--border-md);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .add-input:focus { border-color: var(--purple-400); }
+  .add-input::placeholder { color: var(--text-hint); }
+
+  .add-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--purple-50);
+    color: var(--purple-800);
+    border: 0.5px solid var(--purple-200);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .add-btn:hover { background: var(--purple-100); }
+
+  /* TEAM */
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .member-row:last-child { border-bottom: none; }
+
+  .av {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .av-p { background: var(--purple-50); color: var(--purple-800); }
+  .av-t { background: var(--teal-50);   color: var(--teal-800); }
+  .av-c { background: var(--coral-50);  color: var(--coral-800); }
+  .av-a { background: var(--amber-50);  color: var(--amber-800); }
+
+  .member-info { flex: 1; }
+  .member-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .member-role { font-size: 11px; color: var(--text-hint); }
+
+  .status-wrap { display: flex; align-items: center; gap: 5px; }
+  .status-dot  { width: 7px; height: 7px; border-radius: 50%; }
+  .dot-green  { background: var(--teal-400); }
+  .dot-amber  { background: #BA7517; }
+  .dot-gray   { background: var(--gray-400); }
+  .status-txt { font-size: 11px; color: var(--text-hint); }
+
+  /* PROGRESS */
+  .progress-wrap { margin-bottom: 12px; }
+  .progress-wrap:last-child { margin-bottom: 0; }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .progress-pct { font-weight: 500; color: var(--text); }
+
+  .progress-bar {
+    height: 7px;
+    background: var(--gray-100);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .fill-purple { background: var(--purple-400); }
+  .fill-teal   { background: var(--teal-400); }
+  .fill-amber  { background: #BA7517; }
+
+  /* UPDATES */
+  .update-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .update-item:last-child { border-bottom: none; }
+
+  .update-av {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .update-body { flex: 1; }
+  .update-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .update-time { font-size: 11px; color: var(--text-hint); margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--border);
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .footer p { font-size: 12px; color: var(--text-hint); line-height: 1.8; }
+  .footer strong { color: var(--purple-600); font-weight: 500; }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--purple-600);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .footer-links a:hover { text-decoration: underline; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--gray-900);
+    color: white;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.25s;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .stats  { grid-template-columns: repeat(2, 1fr); }
+    .page   { padding: 1.5rem 1rem 3rem; }
+    nav     { padding: 0 1rem; }
+    .nav-date { display: none; }
+    .db-title { font-size: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .header-actions { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-avatar">SN</div>
+    <span class="nav-name">Stefanie Nicole Navarro</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-badge">&#x2022; Live Demo</span>
+    <span class="nav-date" id="nav-date"></span>
+  </div>
+</nav>
+
+<main class="page">
+
+  <!-- HEADER -->
+  <div class="db-header">
+    <div>
+      <div class="db-title">Weekly Operations Dashboard</div>
+      <div class="db-sub">Remote Team &nbsp;·&nbsp; <span id="week-label"></span></div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-outline" onclick="exportSummary()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export report
+      </button>
+      <button class="btn-primary" onclick="addTaskFocus()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add task
+      </button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val purple" id="s-total">12</div>
+      <div class="stat-lbl">Total tasks</div>
+      <div class="stat-delta">This week</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val teal" id="s-done">5</div>
+      <div class="stat-lbl">Completed</div>
+      <div class="stat-delta" id="s-pct"></div>
+    </div>
+    <div class="stat">
+      <div class="stat-val amber" id="s-prog">4</div>
+      <div class="stat-lbl">In progress</div>
+      <div class="stat-delta">Medium priority</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val red" id="s-high">3</div>
+      <div class="stat-lbl">High priority</div>
+      <div class="stat-delta">Needs attention</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="grid-3">
+
+    <!-- TASK TRACKER -->
+    <div class="card">
+      <div class="card-title">
+        Task tracker
+        <div class="filter-row">
+          <button class="filter-btn active" onclick="filterTasks('all',this)">All</button>
+          <button class="filter-btn" onclick="filterTasks('pending',this)">Pending</button>
+          <button class="filter-btn" onclick="filterTasks('done',this)">Done</button>
+        </div>
+      </div>
+      <div id="task-list"></div>
+      <div class="add-row">
+        <input class="add-input" id="new-task" type="text" placeholder="Add a new task..." />
+        <button class="add-btn" onclick="addTask()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+
+      <!-- TEAM STATUS -->
+      <div class="card">
+        <div class="card-title">Team status</div>
+        <div id="member-list"></div>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="card">
+        <div class="card-title">Project progress</div>
+        <div id="progress-list"></div>
+      </div>
+
+    </div>
+
+    <!-- UPDATES -->
+    <div class="card">
+      <div class="card-title">Recent updates</div>
+      <div id="update-list"></div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM GRID -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Completed this week</div>
+      <div id="done-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Priority summary</div>
+      <div id="priority-summary"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Sample project built by <strong>Stefanie Nicole Navarro</strong><br>
+    Operations &amp; Administrative Support Specialist &nbsp;·&nbsp; AI-assisted with Claude</p>
+    <div class="footer-links">
+      <a href="mailto:stefnvrr@gmail.com">stefnvrr@gmail.com</a>
+      <a href="https://www.linkedin.com/in/stefanie-navarro/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ── DATA ── */
+  const tasks = [
+    {id:1,  name:'Update Salesforce CRM records',       priority:'high', done:false},
+    {id:2,  name:'Send weekly status report',           priority:'high', done:false},
+    {id:3,  name:'Review and clean data spreadsheet',   priority:'med',  done:false},
+    {id:4,  name:'Coordinate freelancer deliverables',  priority:'med',  done:false},
+    {id:5,  name:'Draft onboarding SOP — version 2',    priority:'low',  done:false},
+    {id:6,  name:'Schedule team sync for Thursday',     priority:'low',  done:false},
+    {id:7,  name:'Verify vendor invoice data',          priority:'high', done:false},
+    {id:8,  name:'Archive Q1 operational records',      priority:'low',  done:true},
+    {id:9,  name:'Update workflow tracking sheet',      priority:'med',  done:true},
+    {id:10, name:'Reply to client onboarding emails',   priority:'med',  done:true},
+    {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
+    {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
+  ];
+
+  const members = [
+    {initials:'SN', name:'Stefanie N.', role:'Operations Lead',  status:'green', cls:'av-p'},
+    {initials:'JR', name:'James R.',    role:'Data Analyst',     status:'green', cls:'av-t'},
+    {initials:'MA', name:'Maria A.',    role:'Admin Support',    status:'amber', cls:'av-c'},
+    {initials:'TL', name:'Tom L.',      role:'Freelancer',       status:'gray',  cls:'av-a'},
+  ];
+
+  const statusLabel = {green:'Online', amber:'Away', gray:'Offline'};
+
+  const projects = [
+    {label:'CRM data cleanup',    pct:72, cls:'fill-purple'},
+    {label:'Onboarding SOPs',     pct:45, cls:'fill-teal'},
+    {label:'Q2 workflow setup',   pct:88, cls:'fill-amber'},
+  ];
+
+  const updates = [
+    {initials:'SN', cls:'av-p', text:'Completed archiving all Q1 operational records to shared drive.', time:'Today, 9:14 AM'},
+    {initials:'JR', cls:'av-t', text:'Data validation pass done — 3 errors flagged and corrected in Sheet B.', time:'Today, 8:40 AM'},
+    {initials:'MA', cls:'av-c', text:'Onboarding email templates drafted and sent for review.', time:'Yesterday, 4:22 PM'},
+    {initials:'TL', cls:'av-a', text:'Freelancer deliverable submitted — pending ops lead review.', time:'Yesterday, 2:05 PM'},
+  ];
+
+  let currentFilter = 'all';
+  let nextId = 13;
+
+  /* ── UTILS ── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function getTag(priority, done) {
+    if (done)            return '<span class="task-tag tag-done">Done</span>';
+    if (priority==='high') return '<span class="task-tag tag-high">High</span>';
+    if (priority==='med')  return '<span class="task-tag tag-med">Med</span>';
+    return                        '<span class="task-tag tag-low">Low</span>';
+  }
+
+  /* ── RENDER TASKS ── */
+  function renderTasks() {
+    const filtered = tasks.filter(t => {
+      if (currentFilter === 'pending') return !t.done;
+      if (currentFilter === 'done')    return t.done;
+      return true;
+    });
+    document.getElementById('task-list').innerHTML = filtered.map(t => `
+      <div class="task-row" onclick="toggleTask(${t.id})">
+        <div class="task-cb ${t.done ? 'done' : ''}"></div>
+        <span class="task-name ${t.done ? 'done' : ''}">${t.name}</span>
+        ${getTag(t.priority, t.done)}
+      </div>
+    `).join('');
+    updateStats();
+    renderDoneList();
+    renderPrioritySummary();
+  }
+
+  function toggleTask(id) {
+    const t = tasks.find(x => x.id === id);
+    if (!t) return;
+    t.done = !t.done;
+    showToast(t.done ? 'Task marked complete!' : 'Task reopened.');
+    renderTasks();
+  }
+
+  function filterTasks(f, btn) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTasks();
+  }
+
+  function addTask() {
+    const inp = document.getElementById('new-task');
+    const val = inp.value.trim();
+    if (!val) return;
+    tasks.unshift({id: nextId++, name: val, priority: 'med', done: false});
+    inp.value = '';
+    showToast('Task added!');
+    renderTasks();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('new-task').addEventListener('keydown', e => {
+      if (e.key === 'Enter') addTask();
+    });
+  });
+
+  function addTaskFocus() {
+    document.getElementById('new-task').focus();
+  }
+
+  /* ── UPDATE STATS ── */
+  function updateStats() {
+    const done  = tasks.filter(t => t.done).length;
+    const prog  = tasks.filter(t => !t.done && t.priority === 'med').length;
+    const high  = tasks.filter(t => !t.done && t.priority === 'high').length;
+    const total = tasks.length;
+    const pct   = Math.round((done / total) * 100);
+    document.getElementById('s-total').textContent = total;
+    document.getElementById('s-done').textContent  = done;
+    document.getElementById('s-prog').textContent  = prog;
+    document.getElementById('s-high').textContent  = high;
+    document.getElementById('s-pct').textContent   = pct + '% complete';
+  }
+
+  /* ── MEMBERS ── */
+  function renderMembers() {
+    document.getElementById('member-list').innerHTML = members.map(m => `
+      <div class="member-row">
+        <div class="av ${m.cls}">${m.initials}</div>
+        <div class="member-info">
+          <div class="member-name">${m.name}</div>
+          <div class="member-role">${m.role}</div>
+        </div>
+        <div class="status-wrap">
+          <div class="status-dot dot-${m.status}"></div>
+          <span class="status-txt">${statusLabel[m.status]}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── PROGRESS ── */
+  function renderProgress() {
+    document.getElementById('progress-list').innerHTML = projects.map(p => `
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>${p.label}</span>
+          <span class="progress-pct">${p.pct}%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill ${p.cls}" style="width:0%" data-target="${p.pct}"></div>
+        </div>
+      </div>
+    `).join('');
+    setTimeout(() => {
+      document.querySelectorAll('.progress-fill').forEach(el => {
+        el.style.width = el.dataset.target + '%';
+      });
+    }, 100);
+  }
+
+  /* ── UPDATES ── */
+  function renderUpdates() {
+    document.getElementById('update-list').innerHTML = updates.map(u => `
+      <div class="update-item">
+        <div class="update-av ${u.cls}">${u.initials}</div>
+        <div class="update-body">
+          <div class="update-text">${u.text}</div>
+          <div class="update-time">${u.time}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── DONE LIST ── */
+  function renderDoneList() {
+    const done = tasks.filter(t => t.done);
+    document.getElementById('done-list').innerHTML = done.length
+      ? done.map(t => `
+          <div class="task-row" onclick="toggleTask(${t.id})" style="cursor:pointer;">
+            <div class="task-cb done"></div>
+            <span class="task-name done">${t.name}</span>
+            <span class="task-tag tag-done">Done</span>
+          </div>`).join('')
+      : '<div style="font-size:13px;color:var(--text-hint);padding:8px 0;">No completed tasks yet.</div>';
+  }
+
+  /* ── PRIORITY SUMMARY ── */
+  function renderPrioritySummary() {
+    const pending = tasks.filter(t => !t.done);
+    const high = pending.filter(t => t.priority === 'high').length;
+    const med  = pending.filter(t => t.priority === 'med').length;
+    const low  = pending.filter(t => t.priority === 'low').length;
+    const rows = [
+      {label:'High priority', count:high, tag:'tag-high'},
+      {label:'Medium priority', count:med, tag:'tag-med'},
+      {label:'Low priority', count:low, tag:'tag-low'},
+    ];
+    document.getElementById('priority-summary').innerHTML = rows.map(r => `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:0.5px solid var(--border);">
+        <span style="font-size:13px;color:var(--text-muted);">${r.label}</span>
+        <span class="task-tag ${r.tag}" style="font-size:12px;">${r.count} task${r.count !== 1 ? 's' : ''}</span>
+      </div>
+    `).join('') + `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;">
+        <span style="font-size:13px;font-weight:500;color:var(--text);">Total pending</span>
+        <span style="font-size:13px;font-weight:500;color:var(--purple-600);">${pending.length}</span>
+      </div>`;
+  }
+
+  /* ── EXPORT ── */
+  function exportSummary() {
+    const done  = tasks.filter(t => t.done).length;
+    const total = tasks.length;
+    const high  = tasks.filter(t => !t.done && t.priority === 'high').length;
+    const lines = [
+      'WEEKLY OPERATIONS REPORT',
+      '========================',
+      `Generated: ${new Date().toLocaleString()}`,
+      '',
+      `Total tasks:     ${total}`,
+      `Completed:       ${done} (${Math.round(done/total*100)}%)`,
+      `High priority:   ${high} pending`,
+      '',
+      'PENDING TASKS:',
+      ...tasks.filter(t => !t.done).map(t => `  [${t.priority.toUpperCase()}] ${t.name}`),
+      '',
+      'COMPLETED TASKS:',
+      ...tasks.filter(t => t.done).map(t => `  [DONE] ${t.name}`),
+      '',
+      '---',
+      'Prepared by Stefanie Nicole Navarro',
+      'Operations & Administrative Support Specialist',
+    ];
+    const blob = new Blob([lines.join('\n')], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ops-report.txt';
+    a.click();
+    showToast('Report exported!');
+  }
+
+  /* ── DATE ── */
+  function setDates() {
+    const now = new Date();
+    const opts = {weekday:'long', year:'numeric', month:'long', day:'numeric'};
+    document.getElementById('nav-date').textContent = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    const start = new Date(now);
+    start.setDate(now.getDate() - now.getDay() + 1);
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+    const fmt = d => d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    document.getElementById('week-label').textContent = `Week of ${fmt(start)} – ${fmt(end)}`;
+  }
+
+  /* ── INIT ── */
+  setDates();
+  renderTasks();
+  renderMembers();
+  renderProgress();
+  renderUpdates();
+</script>
+</body>
+</html>
