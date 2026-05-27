@@ -662,6 +662,864 @@
 
 <div class="toast" id="toast"></div>
 
+
+
+
+Stefanie Nicole Navarro(1).pdf
+PDF
+what do you think is missing? can you enhance it
+
+Generated image: Operations workflow tracker dashboard design
+
+
+Edit
+
+
+Here’s the easiest way to create a Completion Percentage in Google Sheets.
+
+Assume:
+
+Column B = Status
+
+Your statuses are:
+
+Completed
+
+In Progress
+
+Pending
+
+Step-by-Step
+Step 1 — Click an Empty Cell
+Example:
+
+G2
+Step 2 — Paste This Formula
+=COUNTIF(B:B,"Completed")/COUNTA(A2:A)
+What This Formula Does
+COUNTIF(B:B,"Completed")
+Counts all completed tasks.
+
+COUNTA(A2:A)
+Counts total tasks.
+
+Result
+It calculates:
+
+Completed Tasks ÷ Total Tasks
+Example:
+
+14 completed ÷ 20 tasks = 70%
+Step 3 — Convert to Percentage
+Select the formula cell
+
+Click:
+
+Format
+
+→ Number
+
+→ Percent
+
+Now it shows:
+
+70%
+instead of:
+
+0.7
+Optional: Add Text
+If you want it to look more professional:
+
+="Completion Rate: "&TEXT(COUNTIF(B:B,"Completed")/COUNTA(A2:A),"0%")
+Result:
+
+Completion Rate: 70%
+This style looks great in dashboard summary cards and portfolio screenshots.
+
+
+how to convert that into chart
+
+To convert your Completion Percentage into a chart in Google Sheets, you need a small summary table first.
+
+Step 1 — Create a Summary Table
+Example:
+
+Status	Count
+Completed	14
+Pending	4
+In Progress	2
+Use formulas:
+
+Completed
+=COUNTIF(B:B,"Completed")
+Pending
+=COUNTIF(B:B,"Pending")
+In Progress
+=COUNTIF(B:B,"In Progress")
+Step 2 — Highlight the Table
+Highlight both columns:
+
+Status + Count
+Example:
+
+A1:B4
+Step 3 — Insert Chart
+Click:
+
+Insert → Chart
+Google Sheets automatically creates one.
+
+Step 4 — Change Chart Type
+On the right panel:
+
+Chart Type →
+Choose:
+
+Pie Chart
+
+Doughnut Chart
+
+Bar Chart
+
+For dashboards:
+✅ Doughnut Chart looks most professional.
+
+Step 5 — Customize
+Go to:
+
+Customize
+You can:
+
+rename chart title
+
+show percentages
+
+move legend
+
+adjust colors
+
+BEST Dashboard Charts
+Doughnut Chart
+Best for:
+
+completion %
+
+task status overview
+
+Bar Chart
+Best for:
+
+tasks by priority
+
+workload comparison
+
+Pro Tip (Portfolio Quality)
+Use:
+
+clean spacing
+
+minimal colors
+
+larger font
+
+no grid clutter
+
+This makes your dashboard look more premium and client-ready.
+
+
+it didn't show the overall progress
+
+Because the chart is using separate status counts, it shows task distribution — not the single “overall progress” percentage.
+
+To show an actual overall progress chart, use this setup instead.
+
+Create an Overall Progress Table
+Example:
+
+Type	Value
+Completed	70
+Remaining	30
+Step 1 — Create the Formula
+If your completion rate formula is:
+
+=COUNTIF(B:B,"Completed")/COUNTA(A2:A)
+Then multiply by 100:
+
+=(COUNTIF(B:B,"Completed")/COUNTA(A2:A))*100
+This gives:
+
+70
+Step 2 — Create Remaining %
+In another cell:
+
+=100-B2
+If B2 contains 70,
+this returns:
+
+30
+Step 3 — Build This Table
+Type	Value
+Completed	70
+Remaining	30
+Step 4 — Insert Doughnut Chart
+Highlight the table
+
+Click:
+
+Insert → Chart
+Change chart type to:
+
+Doughnut Chart
+Now it shows:
+
+completed portion
+
+remaining portion
+
+visual overall progress
+
+Make It Look Professional
+Under Customize:
+
+remove legend if needed
+
+rename title:
+
+Overall Progress
+increase doughnut hole size
+
+This creates the clean circular progress chart commonly used in dashboards.
+
+
+another data entry portfolio
+
+Generated image: Menu transcription spreadsheet template mockup
+
+
+Edit
+
+
+=COUNT(Summary!B2:B26) > what's wrong with the formula
+
+Your formula itself is technically correct:
+
+=COUNT(Summary!B2:B26)
+But COUNT only counts cells with numbers.
+
+If your cells contain:
+
+text
+
+statuses
+
+names
+
+formulas returning text
+
+then it returns 0 or an incorrect count.
+
+Use These Instead
+Count All Non-Empty Cells
+=COUNTA(Summary!B2:B26)
+Use this if your column contains text like:
+
+Completed
+
+Pending
+
+Available
+
+Count Specific Status
+Example:
+
+=COUNTIF(Summary!B2:B26,"Completed")
+This counts only cells containing:
+
+Completed
+Quick Guide
+Formula	Use For
+COUNT	Numbers only
+COUNTA	Any non-empty cell
+COUNTIF	Specific text/value
+Most dashboard trackers use:
+
+COUNTA
+or
+
+COUNTIF
+instead of COUNT.
+
+
+how did you come up with the dashboard summry in menu transcription
+
+Please see the attached job interview form for your review. Thank you for considering my application.
+
+
+Please see the attached CV for your review. Thank you!
+
+Please see the attached CV for your review. Thank you for considering my application.
+
+
+guide me on how to deploy html file in github and create shared link for client
+
+i don't have css and javascript, only html link created through claude ai. 
+
+That’s completely fine. If Claude AI generated a single HTML file, you can still deploy it easily on GitHub Pages without CSS or JavaScript files.
+
+You only need:
+
+index.html
+Simplest Method (HTML Only)
+Step 1 — Rename Your File
+Make sure your file is named:
+
+index.html
+This is important because GitHub automatically looks for this file.
+
+Step 2 — Create GitHub Repository
+Go to:
+
+GitHub
+
+Then:
+
+Click:
+
+New Repository
+Repository name example:
+
+portfolio-site
+Set to:
+
+Public
+Click:
+
+Create Repository
+Step 3 — Upload HTML File
+Inside the repository:
+
+Click:
+
+Add File → Upload Files
+Upload:
+
+index.html
+Click:
+
+Commit Changes
+Step 4 — Enable GitHub Pages
+Open:
+
+Settings
+Click:
+
+Pages
+Under:
+
+Source
+Choose:
+
+Deploy from branch
+Select:
+
+main branch
+Click:
+
+Save
+Step 5 — Get Your Live Website Link
+After 1–3 minutes, GitHub gives you a link like:
+
+https://yourusername.github.io/portfolio-site/
+That’s your live portfolio link you can send to clients.
+
+IMPORTANT
+If the HTML already contains:
+
+styling
+
+colors
+
+layout
+
+then Claude probably embedded the CSS inside the HTML file already.
+
+That means:
+✅ no separate CSS file needed
+✅ no JavaScript file needed
+
+Everything works from one file.
+
+Pro Tip For Upwork
+Add the link in:
+
+Portfolio Project
+
+Project Description
+
+Cover Letters
+
+Example:
+
+Live Demo: https://yourusername.github.io/portfolio-site/
+This instantly makes you look more professional.
+
+
+can i still edit the html in github?
+
+Yes, absolutely. You can edit your HTML file anytime directly in GitHub even after deployment.
+
+Your live website updates automatically after you save changes.
+
+How to Edit HTML Directly in GitHub
+Step 1 — Open Your Repository
+Example:
+
+portfolio-site
+Step 2 — Click index.html
+Open your HTML file.
+
+Step 3 — Click the Pencil Icon ✏️
+Top-right area of the file.
+
+This opens the built-in editor.
+
+Step 4 — Edit Your Code
+You can change:
+
+text
+
+colors
+
+images
+
+sections
+
+buttons
+
+layout
+
+directly in the browser.
+
+Step 5 — Save Changes
+Scroll down.
+
+Add a short note like:
+
+Updated portfolio text
+Then click:
+
+Commit changes
+Step 6 — Wait 1–2 Minutes
+GitHub automatically redeploys the site.
+
+Refresh your live link and the updates appear.
+
+Beginner Tip
+Before editing:
+
+Open your live website
+
+Open GitHub in another tab
+
+This helps you compare changes live.
+
+Easy Workflow
+Action	Where
+Edit website	GitHub editor
+Save changes	Commit changes
+View updates	Refresh live link
+Important
+If something breaks:
+
+you can always re-edit the file
+
+GitHub keeps version history
+
+you can restore old versions
+
+So it’s beginner-friendly and safe to experiment.
+
+
+correct my code. i want to insert link and directs to it once upwork is clicked
+
+  <div class="plat-name">Upwork</div>
+       <a href="https://www.upwork.com/freelancers/~015640ed57ceca32e8?mp_source=share"></a>
+        <div class="plat-sub">Profile active</div>
+
+Your <a> tag is empty, so nothing is clickable.
+
+Wrap the “Upwork” text inside the <a> tag like this:
+
+<a href="https://www.upwork.com/freelancers/~015640ed57ceca32e8?mp_source=share" target="_blank">
+  <div class="plat-name">Upwork</div>
+</a>
+
+<div class="plat-sub">Profile active</div>
+What this does:
+href → your Upwork link
+
+target="_blank" → opens in a new tab
+
+“Upwork” becomes clickable
+
+If you want the whole card/container clickable, I can also help you make the entire section clickable instead of just the text.
+
+
+code to create new page inside html page
+
+To create a new page in HTML, you create another .html file and link to it using <a href="">.
+
+Example:
+
+Step 1 — Create Another HTML File
+Example:
+
+about.html
+or
+
+portfolio.html
+Step 2 — Add Link in Your Main Page
+Inside index.html:
+
+<a href="about.html">About Me</a>
+When clicked, it opens:
+
+about.html
+Example Full Structure
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+</head>
+<body>
+
+  <h1>Welcome to My Portfolio</h1>
+
+  <a href="about.html">Go to About Page</a>
+
+</body>
+</html>
+about.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Page</title>
+</head>
+<body>
+
+  <h1>About Me</h1>
+  <p>This is my second page.</p>
+
+  <a href="index.html">Back to Home</a>
+
+</body>
+</html>
+Folder Structure
+project-folder/
+│
+├── index.html
+└── about.html
+Both files must be in the same folder.
+
+Open in New Tab (Optional)
+<a href="about.html" target="_blank">About</a>
+Common Pages People Create
+Page	File Name
+About	about.html
+Portfolio	portfolio.html
+Contact	contact.html
+Services	services.html
+Important for GitHub Pages
+As long as all .html files are uploaded in the same repository, GitHub Pages automatically supports them.
+
+Example live links:
+
+yourwebsite.github.io/about.html
+yourwebsite.github.io/contact.html
+
+image.png
+I need to add Portfolio tab here but it must direct to new page not bottom part
+
+Add a new navigation item like this beside CONTACT:
+
+<li><a href="portfolio.html">PORTFOLIO</a></li>
+So your full navigation becomes:
+
+<ul>
+  <li><a href="#experience">EXPERIENCE</a></li>
+  <li><a href="#skills">SKILLS</a></li>
+  <li><a href="#ai">AI</a></li>
+  <li><a href="portfolio.html">PORTFOLIO</a></li>
+  <li><a href="#contact">CONTACT</a></li>
+</ul>
+Important
+Create a new file named:
+
+portfolio.html
+inside the same folder as your index.html.
+
+Example Folder Structure
+project-folder/
+│
+├── index.html
+└── portfolio.html
+What Happens
+When users click:
+
+PORTFOLIO
+it opens:
+
+portfolio.html
+instead of scrolling to a section on the same page.
+
+
+how to create folder in github where i can put the index and portfolio
+
+Here’s the easiest way to create a folder in GitHub and place your index.html and portfolio.html files inside it.
+
+Method 1 — Create Folder While Uploading Files (Easiest)
+Step 1 — Open Your Repository
+Example:
+
+portfolio-site
+Step 2 — Click “Add File”
+Add file → Create new file
+Step 3 — Type Folder Name + File Name
+Example:
+
+pages/index.html
+GitHub automatically creates:
+
+folder:
+
+pages
+file:
+
+index.html
+Step 4 — Paste Your HTML Code
+Paste your code inside the editor.
+
+Step 5 — Commit Changes
+Scroll down →
+
+Commit changes
+Step 6 — Create Another File Inside Same Folder
+Repeat:
+
+pages/portfolio.html
+Now both files are inside:
+
+pages/
+Your Structure Will Look Like
+portfolio-site/
+│
+└── pages/
+    ├── index.html
+    └── portfolio.html
+IMPORTANT — Update Your Link
+Since files are now inside /pages, your link becomes:
+
+<a href="portfolio.html">PORTFOLIO</a>
+IF both files are inside the same folder.
+
+BUT if index.html is outside the folder:
+Example:
+
+index.html
+pages/portfolio.html
+Then use:
+
+<a href="pages/portfolio.html">PORTFOLIO</a>
+Best Beginner Setup
+Keep BOTH files in the same folder.
+
+Simplest structure:
+
+portfolio-site/
+│
+├── index.html
+└── portfolio.html
+This avoids broken links and confusion.
+
+
+i have an existing index html
+
+That’s even easier. Since you already have an existing index.html, you only need to add a second file:
+
+portfolio.html
+No need to create another folder unless you want to organize many files.
+
+Recommended Simple Structure
+Inside your GitHub repository:
+
+portfolio-site/
+│
+├── index.html
+└── portfolio.html
+How to Add portfolio.html in GitHub
+Step 1 — Open Repository
+Go to your repo in GitHub
+
+Step 2 — Click
+Add file → Create new file
+Step 3 — File Name
+Type:
+
+portfolio.html
+Step 4 — Paste HTML Code
+Example starter code:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+</head>
+<body>
+
+  <h1>My Portfolio</h1>
+  <p>Portfolio projects will go here.</p>
+
+</body>
+</html>
+Step 5 — Commit Changes
+Click:
+
+Commit changes
+Step 6 — Update Navigation in index.html
+Add:
+
+<li><a href="portfolio.html">PORTFOLIO</a></li>
+Now clicking:
+
+PORTFOLIO
+opens:
+
+portfolio.html
+Your Final Website Links
+Home page:
+
+yourusername.github.io/
+Portfolio page:
+
+yourusername.github.io/portfolio.html
+That’s the simplest and cleanest setup for beginners.
+
+
+image(1).png
+image(2).png
+create code for dropdown to choose high, med, and low priorities. this must also update the priority summary
+
+<!-- TASK ITEM -->
+<div class="task-item">
+  <input type="checkbox">
+
+  <span class="task-name">Update Salesforce CRM records</span>
+
+  <!-- PRIORITY DROPDOWN -->
+  <select class="priority-select" onchange="updateSummary()">
+    <option value="High">High</option>
+    <option value="Med">Med</option>
+    <option value="Low">Low</option>
+  </select>
+</div>
+
+<div class="task-item">
+  <input type="checkbox">
+
+  <span class="task-name">Send weekly status report</span>
+
+  <select class="priority-select" onchange="updateSummary()">
+    <option value="High">High</option>
+    <option value="Med">Med</option>
+    <option value="Low">Low</option>
+  </select>
+</div>
+
+<div class="task-item">
+  <input type="checkbox">
+
+  <span class="task-name">Review and clean data spreadsheet</span>
+
+  <select class="priority-select" onchange="updateSummary()">
+    <option value="Med" selected>Med</option>
+    <option value="High">High</option>
+    <option value="Low">Low</option>
+  </select>
+</div>
+
+<div class="task-item">
+  <input type="checkbox">
+
+  <span class="task-name">Coordinate freelancer deliverables</span>
+
+  <select class="priority-select" onchange="updateSummary()">
+    <option value="Med" selected>Med</option>
+    <option value="High">High</option>
+    <option value="Low">Low</option>
+  </select>
+</div>
+
+<!-- PRIORITY SUMMARY -->
+<div class="summary-box">
+  <h3>PRIORITY SUMMARY</h3>
+
+  <p>High priority: <span id="high-count">0</span></p>
+  <p>Medium priority: <span id="med-count">0</span></p>
+  <p>Low priority: <span id="low-count">0</span></p>
+
+  <p>Total pending: <span id="total-count">0</span></p>
+</div>
+
+<script>
+function updateSummary() {
+
+  const priorities = document.querySelectorAll('.priority-select');
+
+  let high = 0;
+  let med = 0;
+  let low = 0;
+
+  priorities.forEach(select => {
+
+    if(select.value === "High") {
+      high++;
+    }
+
+    else if(select.value === "Med") {
+      med++;
+    }
+
+    else if(select.value === "Low") {
+      low++;
+    }
+
+  });
+
+  document.getElementById('high-count').textContent = high;
+  document.getElementById('med-count').textContent = med;
+  document.getElementById('low-count').textContent = low;
+
+  document.getElementById('total-count').textContent =
+    high + med + low;
+}
+
+/* RUN ON PAGE LOAD */
+updateSummary();
+</script>
+This code:
+
+creates dropdown priorities
+
+updates the summary automatically
+
+recalculates totals every time priority changes
+
+works with pure HTML + JavaScript only
+
+
+attach it here 
+
 <script>
   /* ── DATA ── */
   const tasks = [
@@ -678,6 +1536,289 @@
     {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
     {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
   ];
+
+<script>
+  /* ── DATA ── */
+  const tasks = [
+    {id:1,  name:'Update Salesforce CRM records',       priority:'high', done:false},
+    {id:2,  name:'Send weekly status report',           priority:'high', done:false},
+    {id:3,  name:'Review and clean data spreadsheet',   priority:'med',  done:false},
+    {id:4,  name:'Coordinate freelancer deliverables',  priority:'med',  done:false},
+    {id:5,  name:'Draft onboarding SOP — version 2',    priority:'low',  done:false},
+    {id:6,  name:'Schedule team sync for Thursday',     priority:'low',  done:false},
+    {id:7,  name:'Verify vendor invoice data',          priority:'high', done:false},
+    {id:8,  name:'Archive Q1 operational records',      priority:'low',  done:true},
+    {id:9,  name:'Update workflow tracking sheet',      priority:'med',  done:true},
+    {id:10, name:'Reply to client onboarding emails',   priority:'med',  done:true},
+    {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
+    {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
+  ];
+
+  /* ── PRIORITY SUMMARY ── */
+  function updateSummary() {
+
+    let high = 0;
+    let med = 0;
+    let low = 0;
+    let totalPending = 0;
+
+    tasks.forEach(task => {
+
+      /* COUNT ONLY PENDING TASKS */
+      if(!task.done){
+
+        totalPending++;
+
+        if(task.priority === 'high'){
+          high++;
+        }
+
+        else if(task.priority === 'med'){
+          med++;
+        }
+
+        else if(task.priority === 'low'){
+          low++;
+        }
+
+      }
+
+    });
+
+    document.getElementById('high-count').textContent = high + ' tasks';
+    document.getElementById('med-count').textContent = med + ' tasks';
+    document.getElementById('low-count').textContent = low + ' tasks';
+
+    document.getElementById('total-count').textContent = totalPending;
+  }
+
+  /* ── UPDATE PRIORITY ── */
+  function changePriority(taskId, newPriority){
+
+    const task = tasks.find(t => t.id === taskId);
+
+    if(task){
+      task.priority = newPriority;
+      updateSummary();
+    }
+
+  }
+
+  /* ── RUN ON PAGE LOAD ── */
+  updateSummary();
+</script>
+Add this HTML for the summary section:
+
+<div class="summary-box">
+
+  <h3>PRIORITY SUMMARY</h3>
+
+  <p>
+    High priority
+    <span id="high-count">0 tasks</span>
+  </p>
+
+  <p>
+    Medium priority
+    <span id="med-count">0 tasks</span>
+  </p>
+
+  <p>
+    Low priority
+    <span id="low-count">0 tasks</span>
+  </p>
+
+  <p>
+    Total pending
+    <span id="total-count">0</span>
+  </p>
+
+</div>
+Example dropdown:
+
+<select onchange="changePriority(1, this.value)">
+  <option value="high">High</option>
+  <option value="med">Med</option>
+  <option value="low">Low</option>
+</select>
+Now:
+
+changing dropdown priority updates summary automatically
+
+completed tasks (done:true) are excluded
+
+total pending updates dynamically
+
+
+attach the dropdown code to the above codes
+
+<!-- TASK LIST -->
+<div id="task-list"></div>
+
+<!-- PRIORITY SUMMARY -->
+<div class="summary-box">
+
+  <h3>PRIORITY SUMMARY</h3>
+
+  <p>
+    High priority
+    <span id="high-count">0 tasks</span>
+  </p>
+
+  <p>
+    Medium priority
+    <span id="med-count">0 tasks</span>
+  </p>
+
+  <p>
+    Low priority
+    <span id="low-count">0 tasks</span>
+  </p>
+
+  <p>
+    Total pending
+    <span id="total-count">0</span>
+  </p>
+
+</div>
+
+<script>
+
+  /* ── DATA ── */
+  const tasks = [
+    {id:1,  name:'Update Salesforce CRM records',       priority:'high', done:false},
+    {id:2,  name:'Send weekly status report',           priority:'high', done:false},
+    {id:3,  name:'Review and clean data spreadsheet',   priority:'med',  done:false},
+    {id:4,  name:'Coordinate freelancer deliverables',  priority:'med',  done:false},
+    {id:5,  name:'Draft onboarding SOP — version 2',    priority:'low',  done:false},
+    {id:6,  name:'Schedule team sync for Thursday',     priority:'low',  done:false},
+    {id:7,  name:'Verify vendor invoice data',          priority:'high', done:false},
+    {id:8,  name:'Archive Q1 operational records',      priority:'low',  done:true},
+    {id:9,  name:'Update workflow tracking sheet',      priority:'med',  done:true},
+    {id:10, name:'Reply to client onboarding emails',   priority:'med',  done:true},
+    {id:11, name:'Set up Asana project board',          priority:'low',  done:true},
+    {id:12, name:'Log meeting notes to shared drive',   priority:'low',  done:true},
+  ];
+
+
+  /* ── RENDER TASKS ── */
+  function renderTasks(){
+
+    const taskList = document.getElementById('task-list');
+
+    taskList.innerHTML = '';
+
+    tasks.forEach(task => {
+
+      if(!task.done){
+
+        taskList.innerHTML += `
+
+          <div class="task-item">
+
+            <input type="checkbox">
+
+            <span class="task-name">
+              ${task.name}
+            </span>
+
+            <select onchange="changePriority(${task.id}, this.value)">
+
+              <option value="high"
+                ${task.priority === 'high' ? 'selected' : ''}>
+                High
+              </option>
+
+              <option value="med"
+                ${task.priority === 'med' ? 'selected' : ''}>
+                Med
+              </option>
+
+              <option value="low"
+                ${task.priority === 'low' ? 'selected' : ''}>
+                Low
+              </option>
+
+            </select>
+
+          </div>
+
+        `;
+
+      }
+
+    });
+
+  }
+
+
+  /* ── UPDATE PRIORITY ── */
+  function changePriority(taskId, newPriority){
+
+    const task = tasks.find(t => t.id === taskId);
+
+    if(task){
+
+      task.priority = newPriority;
+
+      updateSummary();
+
+    }
+
+  }
+
+
+  /* ── UPDATE SUMMARY ── */
+  function updateSummary(){
+
+    let high = 0;
+    let med = 0;
+    let low = 0;
+    let totalPending = 0;
+
+    tasks.forEach(task => {
+
+      if(!task.done){
+
+        totalPending++;
+
+        if(task.priority === 'high'){
+          high++;
+        }
+
+        else if(task.priority === 'med'){
+          med++;
+        }
+
+        else if(task.priority === 'low'){
+          low++;
+        }
+
+      }
+
+    });
+
+    document.getElementById('high-count').textContent =
+      high + ' tasks';
+
+    document.getElementById('med-count').textContent =
+      med + ' tasks';
+
+    document.getElementById('low-count').textContent =
+      low + ' tasks';
+
+    document.getElementById('total-count').textContent =
+      totalPending;
+
+  }
+
+
+  /* ── INITIAL LOAD ── */
+  renderTasks();
+  updateSummary();
+
+</script>
+
 
   const members = [
     {initials:'SN', name:'Stefanie N.', role:'Operations Lead',  status:'green', cls:'av-p'},
