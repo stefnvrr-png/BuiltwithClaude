@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefanie Nicole Navarro — Operations & Administrative Support Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --purple-50: #EEEDFE;
+    --purple-100: #CECBF6;
+    --purple-200: #AFA9EC;
+    --purple-400: #7F77DD;
+    --purple-600: #534AB7;
+    --purple-800: #3C3489;
+    --purple-900: #26215C;
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --coral-50: #FAECE7;
+    --coral-200: #F0997B;
+    --coral-600: #993C1D;
+    --coral-800: #712B13;
+    --amber-50: #FAEEDA;
+    --amber-200: #EF9F27;
+    --amber-600: #854F0B;
+    --amber-800: #633806;
+    --gray-50: #F8F8F6;
+    --gray-100: #F1EFE8;
+    --gray-200: #D3D1C7;
+    --gray-500: #888780;
+    --gray-700: #5F5E5A;
+    --gray-900: #2C2C2A;
+    --text: #1a1a18;
+    --text-muted: #5F5E5A;
+    --text-hint: #888780;
+    --border: rgba(44,44,42,0.12);
+    --border-md: rgba(44,44,42,0.22);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray-50);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248,248,246,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple-600); }
+
+  /* PAGE */
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* HERO */
+  .hero {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: var(--purple-50);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--purple-600);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--purple-50);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-info { position: relative; z-index: 1; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .hero-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--purple-600);
+    margin-bottom: 12px;
+  }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 11px;
+    border-radius: 20px;
+    border: 0.5px solid;
+  }
+
+  .b-purple { background: var(--purple-50); color: var(--purple-800); border-color: var(--purple-200); }
+  .b-teal   { background: var(--teal-50);   color: var(--teal-800);   border-color: var(--teal-100); }
+  .b-coral  { background: var(--coral-50);  color: var(--coral-800);  border-color: var(--coral-200); }
+  .b-amber  { background: var(--amber-50);  color: var(--amber-800);  border-color: var(--amber-200); }
+
+  .hero-bio {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--gray-50);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 5px 11px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .chip:hover { border-color: var(--purple-200); color: var(--purple-600); }
+  .chip svg { width: 13px; height: 13px; stroke: var(--purple-600); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  /* SECTION LABEL */
+  .sec-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-600);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .stat {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--purple-600);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* SECTION WRAPPER */
+  .section { margin-bottom: 2rem; animation: fadeUp 0.6s 0.15s ease both; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .exp-card {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    transition: border-color 0.2s;
+  }
+
+  .exp-card:hover { border-color: var(--purple-200); }
+
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .exp-role { font-size: 14px; font-weight: 500; color: var(--text); }
+  .exp-co   { font-size: 12px; color: var(--purple-600); margin-top: 2px; font-weight: 500; }
+  .exp-date { font-size: 11px; color: var(--text-hint); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+
+  .exp-pts {
+    list-style: none;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    padding-left: 0;
+  }
+
+  .exp-pts li {
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 2px;
+  }
+
+  .exp-pts li::before {
+    content: '·';
+    position: absolute;
+    left: 3px;
+    color: var(--purple-400);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 10px;
+  }
+
+  .sk-card {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .sk-card:hover { border-color: var(--purple-200); transform: translateY(-2px); }
+
+  .sk-head { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+
+  .sk-ico {
+    width: 30px; height: 30px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sk-ico svg { width: 15px; height: 15px; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .ico-p { background: var(--purple-50); } .ico-p svg { stroke: var(--purple-600); }
+  .ico-t { background: var(--teal-50);   } .ico-t svg { stroke: var(--teal-600);   }
+  .ico-c { background: var(--coral-50);  } .ico-c svg { stroke: var(--coral-600);  }
+  .ico-a { background: var(--amber-50);  } .ico-a svg { stroke: var(--amber-600);  }
+
+  .sk-name  { font-size: 12.5px; font-weight: 500; color: var(--text); }
+  .sk-items { font-size: 11.5px; color: var(--text-muted); line-height: 1.65; }
+
+  /* AI CARD */
+  .ai-card {
+    background: white;
+    border: 0.5px solid var(--teal-100);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal-400);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .ai-top { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 12px; }
+
+  .ai-pill {
+    background: var(--teal-400);
+    color: var(--teal-50);
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  .ai-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .ai-desc  { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  .ai-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+  .ai-tool {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 0.5px solid;
+  }
+
+  .ai-tool.active   { background: var(--teal-50);   color: var(--teal-800);   border-color: var(--teal-100); }
+  .ai-tool.learning { background: var(--purple-50); color: var(--purple-800); border-color: var(--purple-200); }
+
+  .ai-use-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--teal-100);
+  }
+
+  .ai-use {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .ai-use svg { width: 13px; height: 13px; stroke: var(--teal-400); fill: none; stroke-width: 2.5; stroke-linecap: round; flex-shrink: 0; margin-top: 2px; }
+
+  /* PLATFORMS */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .plat {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 12px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+
+  .plat:hover { border-color: var(--purple-200); transform: translateY(-2px); }
+
+  .plat svg { width: 22px; height: 22px; stroke: var(--purple-600); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 7px; display: block; }
+  .plat-name { font-size: 12.5px; font-weight: 500; color: var(--text); }
+  .plat-sub  { font-size: 11px; color: var(--text-hint); margin-top: 2px; }
+
+  /* EDU */
+  .edu-card {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .edu-ico {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--purple-50);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .edu-ico svg { width: 20px; height: 20px; stroke: var(--purple-600); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .edu-deg { font-size: 13.5px; font-weight: 500; color: var(--text); }
+  .edu-sch { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  footer p { font-size: 12px; color: var(--text-hint); line-height: 1.7; }
+
+  .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 10px; flex-wrap: wrap; }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--purple-600);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .footer-links a:hover { opacity: 0.7; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(2)  { animation-delay: 0.1s; }
+  .section:nth-child(3)  { animation-delay: 0.15s; }
+  .section:nth-child(4)  { animation-delay: 0.2s; }
+  .section:nth-child(5)  { animation-delay: 0.25s; }
+  .section:nth-child(6)  { animation-delay: 0.3s; }
+  .section:nth-child(7)  { animation-delay: 0.35s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 560px) {
+    .page { padding: 1.5rem 1rem 4rem; }
+    h1 { font-size: 24px; }
+    .hero { padding: 1.5rem; }
+    .hero-top { flex-direction: column; gap: 1rem; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stats-row .stat:last-child { grid-column: span 2; }
+    .ai-use-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Stefanie Nicole Navarro</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#ai">AI</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="avatar">SN</div>
+      <div class="hero-info">
+        <h1>Stefanie Nicole Navarro</h1>
+        <div class="hero-title">Operations &amp; Administrative Support Specialist</div>
+        <div class="badge-row">
+          <span class="badge b-purple">5+ Years Experience</span>
+          <span class="badge b-teal">Remote Ready</span>
+          <span class="badge b-coral">Available Now</span>
+          <span class="badge b-amber">Philippines (UTC+8)</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bio">
+      Detail-oriented Operations Associate and Data Entry Specialist with over 5 years of experience supporting remote teams, managing high-volume data tasks, and maintaining accurate operational workflows. Skilled in data management, workflow coordination, quality assurance, and administrative support — and currently leveling up with AI tools including Claude to work even faster and smarter.
+    </div>
+    <div class="contacts" id="contact">
+      <a class="chip" href="mailto:stefnvrr@gmail.com">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        stefnvrr@gmail.com
+      </a>
+      <a class="chip" href="https://www.linkedin.com/in/stefanie-navarro/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.5"/><path d="M12 11v5M12 14a3 3 0 0 1 6 0v2"/></svg>
+        linkedin.com/in/stefanie-navarro
+      </a>
+      <span class="chip">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Zambales, Philippines
+      </span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-lbl">Years of remote ops experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Companies across ops &amp; data roles</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-lbl">Tools in active use</div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="experience">
+    <div class="sec-label">Work experience</div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Operations Associate</div>
+            <div class="exp-co">Woflow Inc.</div>
+          </div>
+          <div class="exp-date">Oct 2021 – Present</div>
+        </div>
+        <ul class="exp-pts">
+          <li>Provided daily operational and administrative support to management teams</li>
+          <li>Coordinated with remote freelancers and operations teams to ensure timely task completion and workflow efficiency</li>
+          <li>Maintained high-accuracy operational records and spreadsheets to support daily workflow tracking and team coordination</li>
+          <li>Tracked progress and communicated updates, issues, and status reports to operations lead</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Menu Transcription Specialist</div>
+            <div class="exp-co">TaskUs</div>
+          </div>
+          <div class="exp-date">Nov 2018 – Aug 2021</div>
+        </div>
+        <ul class="exp-pts">
+          <li>Transcribed menu data from handwritten, printed, and digital sources into structured formats</li>
+          <li>Verified accuracy of menu items, prices, and descriptions against source materials</li>
+          <li>Delivered real-time updates using client tools while meeting strict turnaround times</li>
+          <li>Maintained consistency, quality, and attention to detail across high-volume tasks</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Image Annotator</div>
+            <div class="exp-co">TaskUs</div>
+          </div>
+          <div class="exp-date">Mar 2018 – Nov 2018</div>
+        </div>
+        <ul class="exp-pts">
+          <li>Labeled and classified images by identifying objects, people, animals, and other elements</li>
+          <li>Ensured accuracy and consistency in visual data tagging for AI training datasets</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Data Entry Specialist</div>
+            <div class="exp-co">Scorp Philippines Inc.</div>
+          </div>
+          <div class="exp-date">May 2015 – Dec 2017</div>
+        </div>
+        <ul class="exp-pts">
+          <li>Accurately entered and maintained high-volume customer and account data within strict deadlines</li>
+          <li>Performed data validation, error detection, and correction to ensure consistency and accuracy of records</li>
+          <li>Managed sensitive and confidential information in compliance with data privacy and security standards</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="sec-label">Tech skills</div>
+    <div class="skills-grid">
+
+      <div class="sk-card">
+        <div class="sk-head">
+          <div class="sk-ico ico-p">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+          </div>
+          <div class="sk-name">Operations &amp; Admin</div>
+        </div>
+        <div class="sk-items">Google Workspace · Microsoft Office · Spreadsheet Management</div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-head">
+          <div class="sk-ico ico-t">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="sk-name">Project &amp; Workflow</div>
+        </div>
+        <div class="sk-items">Asana · Slack · Zoom · Google Meet · Loom · Discord</div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-head">
+          <div class="sk-ico ico-c">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+          </div>
+          <div class="sk-name">CRM &amp; Data</div>
+        </div>
+        <div class="sk-items">Salesforce · Data Validation · Error Detection · Record Management</div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-head">
+          <div class="sk-ico ico-a">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          </div>
+          <div class="sk-name">Content &amp; Design</div>
+        </div>
+        <div class="sk-items">Canva · CapCut · Lightroom (basic)</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AI SECTION -->
+  <div class="section" id="ai">
+    <div class="sec-label">AI tools &amp; learning</div>
+    <div class="ai-card">
+      <div class="ai-top">
+        <div class="ai-pill">AI<br>Learning</div>
+        <div>
+          <div class="ai-title">I'm currently learning Claude + AI-powered workflows</div>
+          <div class="ai-desc">I'm currently learning Claude and using it to help me with emails, summarizing docs, writing SOPs, and speeding up repetitive tasks. I already use ChatGPT for workflow support, and adding Claude to my toolkit means I can deliver faster, cleaner, and more consistent work for every client.</div>
+        </div>
+      </div>
+      <div class="ai-tools">
+        <span class="ai-tool active">ChatGPT</span>
+        <span class="ai-tool learning">Claude (learning)</span>
+        <span class="ai-tool learning">AI workflow support</span>
+      </div>
+      <div class="ai-use-grid">
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Drafting professional emails &amp; responses
+        </div>
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Summarizing long documents quickly
+        </div>
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Writing and refining SOPs
+        </div>
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Research assistance and data summaries
+        </div>
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Proofreading and editing reports
+        </div>
+        <div class="ai-use">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Speeding up repetitive admin tasks
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="sec-label">Education</div>
+    <div class="edu-card">
+      <div class="edu-ico">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <div>
+        <div class="edu-deg">Bachelor of Science in Computer Science</div>
+        <div class="edu-sch">Magsaysay Memorial College &nbsp;·&nbsp; Zambales, Philippines &nbsp;·&nbsp; 2015</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORMS -->
+  <div class="section">
+    <div class="sec-label">Available on</div>
+    <div class="platforms-grid">
+      <div class="plat">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        <div class="plat-name">Upwork</div>
+        <div class="plat-sub">Profile active</div>
+      </div>
+      <div class="plat">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <div class="plat-name">OnlineJobs.ph</div>
+        <div class="plat-sub">VA listing</div>
+      </div>
+      <div class="plat">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="plat-name">Indeed</div>
+        <div class="plat-sub">Remote roles</div>
+      </div>
+      <div class="plat">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><path d="M12 11v5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg>
+        <div class="plat-name">LinkedIn</div>
+        <div class="plat-sub">Open to work</div>
+      </div>
+      <div class="plat">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="plat-name">Freelancer</div>
+        <div class="plat-sub">Accepting offers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Stefanie Nicole Navarro &nbsp;·&nbsp; Operations &amp; Administrative Support Specialist &nbsp;·&nbsp; Zambales, Philippines</p>
+    <div class="footer-links">
+      <a href="mailto:stefnvrr@gmail.com">stefnvrr@gmail.com</a>
+      <a href="https://www.linkedin.com/in/stefanie-navarro/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p style="margin-top:10px;font-size:11px;">Built with Claude · &copy; 2026 Stefanie Nicole Navarro</p>
+  </footer>
+
+</main>
+</body>
+</html>
